@@ -18,6 +18,8 @@ package com.devprofiler;
  */
 
 
+import com.devprofiler.entities.ProfileJpaController;
+import javax.persistence.Persistence;
 import org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSession;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebApplication;
 import org.apache.wicket.markup.html.WebPage;
@@ -55,4 +57,9 @@ public class WicketApplication extends AuthenticatedWebApplication
 	{
 		
 	}
+        
+        
+        public ProfileJpaController getProfileJPAController(){
+            return new ProfileJpaController(Persistence.createEntityManagerFactory("devprofiler_pu"));
+        }
 }

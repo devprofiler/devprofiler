@@ -18,12 +18,14 @@ package com.devprofiler;
  */
 
 
+import com.devprofiler.entities.ProfileJpaController;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.protocol.http.WicketServlet;
 
 
 public class HomePage extends WebPage {
@@ -43,4 +45,6 @@ public class HomePage extends WebPage {
 		});
 
     }
+    
+   
 }

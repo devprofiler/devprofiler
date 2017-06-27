@@ -29,7 +29,7 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.util.string.Strings;
 
-public class SignInPage extends HomePage{
+public class SignInPage extends WebPage{
 	private String username;
 	private String password;
 	
