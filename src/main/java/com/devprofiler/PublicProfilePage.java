@@ -20,11 +20,11 @@ public class PublicProfilePage extends WebPage{
         super(parameters);
         StringValue username = parameters.get("username");
         UserManagement um = getUserManagementJPAController().findUserManagementUserName(username.toString());
-        if(um == null){
-            add(new Label("profile","User does not exists"));
-        }else{
-            add(new Label("profile",um.getProfile().toString()));
-        }
+//        if(um == null){
+//            add(new Label("profile","User does not exists"));
+//        }else{
+//            add(new Label("profile",um.getProfile().toString()));
+//        }
     }
     private ProfileJpaController getProfileJPAController() {
         WicketApplication app = (WicketApplication) this.getApplication();
