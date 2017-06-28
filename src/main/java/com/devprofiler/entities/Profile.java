@@ -1,26 +1,11 @@
-/*
- * Copyright 2017 PRanjan3.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-package com.devprofiler.entities
-        ;
+package com.devprofiler.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 /**
  *
@@ -33,8 +18,22 @@ public class Profile implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String firstName,lastName;
-    private String coreSkill;
+    private String firstName, lastName;
+    @Lob
+    private String overview;
+    @Lob
+    private String technologies;
+    @Lob
+    private String education;
+    @Lob
+    private String employment;
+    @Lob
+    private String experience;
+    @Lob
+    private String personnelProjects;
+    @Lob
+    private String updates;
+
     public Long getId() {
         return id;
     }
@@ -59,12 +58,60 @@ public class Profile implements Serializable {
         this.lastName = lastName;
     }
 
-    public String getCoreSkill() {
-        return coreSkill;
+    public String getOverview() {
+        return overview;
     }
 
-    public void setCoreSkill(String coreSkill) {
-        this.coreSkill = coreSkill;
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
+
+    public String getTechnologies() {
+        return technologies;
+    }
+
+    public void setTechnologies(String technologies) {
+        this.technologies = technologies;
+    }
+
+    public String getEducation() {
+        return education;
+    }
+
+    public void setEducation(String education) {
+        this.education = education;
+    }
+
+    public String getEmployment() {
+        return employment;
+    }
+
+    public void setEmployment(String employment) {
+        this.employment = employment;
+    }
+
+    public String getExperience() {
+        return experience;
+    }
+
+    public void setExperience(String experience) {
+        this.experience = experience;
+    }
+
+    public String getPersonnelProjects() {
+        return personnelProjects;
+    }
+
+    public void setPersonnelProjects(String personnelProjects) {
+        this.personnelProjects = personnelProjects;
+    }
+
+    public String getUpdates() {
+        return updates;
+    }
+
+    public void setUpdates(String updates) {
+        this.updates = updates;
     }
 
     @Override
@@ -89,7 +136,7 @@ public class Profile implements Serializable {
 
     @Override
     public String toString() {
-        return "com.devprofiler.Profile[ id=" + id + " ]";
+        return "Profile{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", overview=" + overview + ", technologies=" + technologies + ", education=" + education + ", employment=" + employment + ", experience=" + experience + ", personnelProjects=" + personnelProjects + ", updates=" + updates + '}';
     }
-    
+
 }

@@ -1,0 +1,43 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Insert title here</title>
+        <style>
+            input{
+                clear: both;
+            }
+        </style>
+    </head>
+    <body>
+    <wicket:extend>
+        <h2>Edit your profile</h2>
+        <a wicket:id="goToHomePage">Home page</a>
+        <br />
+        <a wicket:id="logOut">Log out</a>
+
+        <form wicket:id="profileForm">
+            First Name:
+            <br>  <input type="text" wicket:id="firstName"/>
+            Last Name:
+            <br><input type="text" wicket:id="lastName"/>
+            Overview:
+            <br><textarea cols="60" rows="10" wicket:id="overview"></textarea>
+            Technologies:
+            <br><textarea  cols="60" rows="10" wicket:id="technologies"></textarea>
+            education
+            <br><textarea cols="60" rows="10"  wicket:id="education"></textarea>
+            Employment
+            <br><textarea  cols="60" rows="10" wicket:id="employment"></textarea>
+            Experience
+            <br><textarea cols="60" rows="10"  wicket:id="experience"></textarea>
+            Personnel Projects
+            <br><textarea cols="60" rows="10"  wicket:id="personnelProjects"></textarea>
+            Updates
+            <br><textarea  cols="60" rows="10" wicket:id="updates"></textarea>
+            <br><input type="submit"/>
+        </form>
+    </wicket:extend>
+</body>
+</html>

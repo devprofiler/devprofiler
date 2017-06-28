@@ -40,13 +40,14 @@ public class ProfileJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Profile profile) {
+    public Long create(Profile profile) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
             em.persist(profile);
             em.getTransaction().commit();
+            return profile.getId();
         } finally {
             if (em != null) {
                 em.close();
@@ -143,5 +144,7 @@ public class ProfileJpaController implements Serializable {
             em.close();
         }
     }
+
+   
     
 }
