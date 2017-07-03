@@ -1,16 +1,15 @@
 package com.devprofiler;
 
-import com.devprofiler.entities.Profile;
 import com.devprofiler.entities.ProfileJpaController;
-import com.devprofiler.entities.UserManagement;
 import com.devprofiler.entities.UserManagementJpaController;
-import org.apache.wicket.request.mapper.parameter.PageParameters;
-import org.apache.wicket.markup.html.basic.Label;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.apache.wicket.Application;
+import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.markup.html.link.Link;
-import org.apache.wicket.model.IModel;
-import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebPage;
-import org.apache.wicket.protocol.http.WicketServlet;
+
 
 public class HomePage extends WebPage {
 
@@ -18,17 +17,27 @@ public class HomePage extends WebPage {
 
     public HomePage() {
         super();
+            add(new Link<Void>("goToAuthenticatedPage") {
+                
+                @Override
+                public void onClick() {
+                    setResponsePage(ProfilePage.class);
+                }
+                
+            });
+            
+                 
 
-        add(new Link<Void>("goToAuthenticatedPage") {
+         add(new Link<Void>("logOut") {
 
             @Override
             public void onClick() {
-                setResponsePage(ProfilePage.class);
+                AuthenticatedWebSession.get().invalidate();
+                setResponsePage(getApplication().getHomePage());
             }
 
         });
-
-     
+            
     }
 
     private UserManagementJpaController getUserManagementJPAController() {
@@ -40,5 +49,7 @@ public class HomePage extends WebPage {
         WicketApplication app = (WicketApplication) this.getApplication();
         return app.getProfileJPAController();
     }
+
+
 
 }

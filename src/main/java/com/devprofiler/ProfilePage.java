@@ -45,23 +45,23 @@ public class ProfilePage extends HomePage {
     }
     
     public ProfilePage() {
-        add(new Link<Void>("goToHomePage") {
-            
-            @Override
-            public void onClick() {
-                setResponsePage(getApplication().getHomePage());
-            }
-        });
-        
-        add(new Link<Void>("logOut") {
-            
-            @Override
-            public void onClick() {
-                AuthenticatedWebSession.get().invalidate();
-                setResponsePage(getApplication().getHomePage());
-            }
-            
-        });
+//        add(new Link<Void>("goToHomePage") {
+//            
+//            @Override
+//            public void onClick() {
+//                setResponsePage(getApplication().getHomePage());
+//            }
+//        });
+//        
+//        add(new Link<Void>("logOut") {
+//            
+//            @Override
+//            public void onClick() {
+//                AuthenticatedWebSession.get().invalidate();
+//                setResponsePage(getApplication().getHomePage());
+//            }
+//            
+//        });
         addProfileForm();
     }
     

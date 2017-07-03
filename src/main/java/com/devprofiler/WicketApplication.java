@@ -3,9 +3,7 @@ package com.devprofiler;
 
 
 
-import com.devprofiler.entities.Profile;
 import com.devprofiler.entities.ProfileJpaController;
-import com.devprofiler.entities.UserManagement;
 import com.devprofiler.entities.UserManagementJpaController;
 import javax.persistence.Persistence;
 import org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSession;
