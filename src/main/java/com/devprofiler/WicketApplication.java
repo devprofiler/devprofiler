@@ -4,6 +4,7 @@ package com.devprofiler;
 
 
 import com.devprofiler.entities.ProfileJpaController;
+import com.devprofiler.entities.UpdatesJpaController;
 import com.devprofiler.entities.UserManagementJpaController;
 import javax.persistence.Persistence;
 import org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSession;
@@ -42,6 +43,7 @@ public class WicketApplication extends AuthenticatedWebApplication
 	protected void init()
 	{   
             mountPage("publicprofile", PublicProfilePage.class);
+             mountPage("article", Article.class);
 	}
         
         
@@ -51,5 +53,8 @@ public class WicketApplication extends AuthenticatedWebApplication
         
         public UserManagementJpaController getUserManagementJPAController(){
             return new UserManagementJpaController(Persistence.createEntityManagerFactory("devprofiler_pu"));
+        }
+        public UpdatesJpaController getUpdatesJPAController(){
+            return new UpdatesJpaController(Persistence.createEntityManagerFactory("devprofiler_pu"));
         }
 }

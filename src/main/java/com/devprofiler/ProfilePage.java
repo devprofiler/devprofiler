@@ -96,7 +96,6 @@ public class ProfilePage extends HomePage {
         TextArea employment = new TextArea("employment");
          TextArea experience = new TextArea("experience");
         TextArea personnelProjects = new TextArea("personnelProjects");
-        TextArea updates = new TextArea("updates");
         
         form.add(firstName)
                 .add(lastName)
@@ -105,8 +104,7 @@ public class ProfilePage extends HomePage {
                 .add(education)
                 .add(employment)
                 .add(experience)
-                .add(personnelProjects)
-                .add(updates);
+                .add(personnelProjects);
         add(form);
         
     }

@@ -157,10 +157,12 @@ public class UserManagementJpaController implements Serializable {
             return singleResult;
         }catch(Exception ex ) {
             ex.printStackTrace();
-            return null;
+            
         }finally {
             em.close();
         }
+        
+        return null;
     }
     
 }

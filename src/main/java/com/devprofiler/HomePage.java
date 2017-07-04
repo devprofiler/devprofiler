@@ -25,7 +25,14 @@ public class HomePage extends WebPage {
                 }
                 
             });
-            
+             add(new Link<Void>("goToUpdatesPage") {
+                
+                @Override
+                public void onClick() {
+                    setResponsePage(UpdatesPage.class);
+                }
+                
+            });
                  
 
          add(new Link<Void>("logOut") {

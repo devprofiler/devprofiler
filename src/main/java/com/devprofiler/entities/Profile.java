@@ -1,11 +1,15 @@
 package com.devprofiler.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -31,8 +35,9 @@ public class Profile implements Serializable {
     private String experience;
     @Lob
     private String personnelProjects;
-    @Lob
-    private String updates;
+    @OneToMany(cascade = CascadeType.PERSIST)
+    
+    private List<Updates> updates;
 
     public Long getId() {
         return id;
@@ -106,13 +111,21 @@ public class Profile implements Serializable {
         this.personnelProjects = personnelProjects;
     }
 
-    public String getUpdates() {
+    public List<Updates> getUpdates() {
         return updates;
     }
 
-    public void setUpdates(String updates) {
+    public void setUpdates(List<Updates> updates) {
         this.updates = updates;
     }
+    
+    public void add(Updates update) {
+        if(this.updates == null) this.updates = new ArrayList<Updates>();
+        this.updates.add(update);
+    }
+
+  
+  
 
     @Override
     public int hashCode() {
