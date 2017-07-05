@@ -15,13 +15,16 @@ import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.StatelessForm;
 import org.apache.wicket.markup.html.form.TextArea;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.model.Model;
 
 public class UpdatesPage extends HomePage {
 
     private String username = null;
+    StatelessForm updateForm = null;
 
     @Override
     protected void onConfigure() {
@@ -78,13 +81,23 @@ public class UpdatesPage extends HomePage {
 //
 //        };
 
-        
-        List<Updates> updates =  um == null || um.getProfile() == null || um.getProfile().getUpdates() == null ? new ArrayList<Updates>() : um.getProfile().getUpdates();
-        ListView updateLV = new ListView("updateList",updates){
-             @Override
+        List<Updates> updates = um == null || um.getProfile() == null || um.getProfile().getUpdates() == null ? new ArrayList<Updates>() : um.getProfile().getUpdates();
+        ListView updateLV = new ListView("updateList", updates) {
+            @Override
             protected void populateItem(ListItem li) {
-                Updates up = (Updates) li.getModelObject();
-                li.add(new Label("updateText", up.getUpdate()));
+                final Updates up = (Updates) li.getModelObject();
+//                 li.add(new Label("updateTitle", up.getUpdateTitle()));
+                li.add(new Label("updateText", up.getUpdateText()));
+                String title = up.getUpdateTitle() == "" ? "no title" : up.getUpdateTitle();
+                li.add(new Link("updateTitle", new Model(title)) {
+                    @Override
+                    public void onClick() {
+
+                        updateForm.setDefaultModel(new CompoundPropertyModel(up));
+
+                    }
+
+                });
             }
         };
         add(updateLV);
@@ -97,26 +110,32 @@ public class UpdatesPage extends HomePage {
 
         System.out.println(username);
         final UserManagement um = getUserManagementJPAController().findUserManagementUserName(username);
-        final Updates updates = new Updates();
-        StatelessForm updateForm = new StatelessForm("updateForm") {
+        
+        updateForm = new StatelessForm("updateForm") {
             @Override
             protected void onSubmit() {
+                Updates up = (Updates) getModelObject();
                 try {
+                    if (up.getId() != null && up.getId() > 0) {
+                        getUpdatesJPAController().edit(up);
+                    } else {
+                        um.getProfile().add(up);
+                        getProfileJPAController().edit(um.getProfile());
+                        setResponsePage(UpdatesPage.class);
+                    }
 
-                    um.getProfile().add(updates);
-                    getProfileJPAController().edit(um.getProfile());
-                    setResponsePage(UpdatesPage.class);
                 } catch (Exception ex) {
                     Logger.getLogger(UpdatesPage.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         };
 
-        updateForm.setDefaultModel(new CompoundPropertyModel(updates));
+        updateForm.setDefaultModel(new CompoundPropertyModel(new Updates()));
 
-        TextArea updatesTA = new TextArea("update");
+        TextArea updateTitleTA = new TextArea("updateTitle");
+        TextArea updateTextTA = new TextArea("updateText");
 
-        updateForm.add(updatesTA);
+        updateForm.add(updateTitleTA).add(updateTextTA);
         add(updateForm);
 
     }

@@ -9,13 +9,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 /**
  *
  * @author PRanjan3
  */
 @Entity
+@NamedQueries({
+//    @NamedQuery(name="Updates.Dsc",query="SELECT p FROM Profile as p where p.id = :id order by p.updates.id desc")
+})
 public class Profile implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -36,7 +42,7 @@ public class Profile implements Serializable {
     @Lob
     private String personnelProjects;
     @OneToMany(cascade = CascadeType.PERSIST)
-    
+    @OrderBy("id DESC")
     private List<Updates> updates;
 
     public Long getId() {

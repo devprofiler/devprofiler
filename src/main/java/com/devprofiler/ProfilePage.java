@@ -72,7 +72,7 @@ public class ProfilePage extends HomePage {
         
         System.out.println(username);
         UserManagement um = getUserManagementJPAController().findUserManagementUserName(username);
-        final Profile profile = username == null ? new Profile() : um.getProfile();
+        final Profile profile = username == null || um == null ||  um.getProfile() == null ? new Profile() : um.getProfile();
         System.out.println(profile);
         StatelessForm form = new StatelessForm("profileForm") {
             @Override

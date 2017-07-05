@@ -8,14 +8,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 
-/**
- *
- * @author PRanjan3
- */
 @Entity
-
+@NamedQueries({
+//    @NamedQuery(name="Updates.Dsc",query="SELECT u FROM UserManagement as u where u.username = :username and u.password = :password order by u.profile.updates.createdOn desc")
+})
 public class UserManagement implements Serializable {
 
     private static final long serialVersionUID = 1L;

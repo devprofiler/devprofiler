@@ -13,17 +13,28 @@
     <body>
     <wicket:extend>
         <h2>Update</h2>
-        
-        <form wicket:id="updateForm">
-            
-            Updates
-            <br><textarea  cols="60" rows="10" wicket:id="update"></textarea>
-            <br><input type="submit"/>
-        </form>
-        
-        <ul>
-            <li wicket:id="updateList"><span wicket:id="updateText"></span></li>
-        </ul>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <form wicket:id="updateForm">
+                        Updates Title
+                        <br><textarea  cols="60" rows="2" wicket:id="updateTitle"></textarea>
+
+                        Updates
+                        <br><textarea  cols="60" rows="10" wicket:id="updateText"></textarea>
+                        <br><input type="submit"/>
+                    </form>
+
+                </div>
+                <div class="col-lg-6">
+                    <ul>
+                        <li wicket:id="updateList"><a wicket:id="updateTitle">Edit</a><span wicket:id="updateText"></span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
     </wicket:extend>
 </body>
 </html>
