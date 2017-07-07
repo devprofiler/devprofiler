@@ -6,8 +6,8 @@ public class Configuration {
     private static String devprofiler_pu = "devprofiler_pu";
     
     public static String getPU(){
-        return devprofiler_dev_pu;
-//        return devprofiler_pu;
+//        return devprofiler_dev_pu;
+        return devprofiler_pu;
     }
     
 }
