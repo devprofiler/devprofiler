@@ -70,18 +70,18 @@
                                         <center>  <img alt="100%x200" data-src="holder.js/100%x200"  width="140" height="140" src="asset/images/Elephant Octopus.jpg" data-holder-rendered="true"> 
                                         </center>
                                     </div>
-                                    <div class="caption"> <h3><center>Priya Ranjan</center> </h3> 
+                                    <div class="caption"> <h3><center wicket:id="fullName"></center> </h3> 
                                         <p>Above 10 years of product development experience for Fortune 500 companies with
                                             focus on end to end architecture and development.</p>
                                         <div class="row">
                                             <div class="container"> 
-                                                <div class="col-md-6 profile-box" role="complementary"> 
+                                                <div class="col-md-7 profile-box" role="complementary"> 
                                                     <span class="glyp6icon glyphicon-envelope" aria-hidden="true"></span>
-                                                    <span class="glyphicon-class small">Email</span>
+                                                    <span class="glyphicon-class small" wicket:id="email">Email</span>
                                                 </div>
-                                                <div class="col-md-6 profile-box" profile role="complementary"> 
+                                                <div class="col-md-5 profile-box" profile role="complementary"> 
                                                     <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
-                                                    <span class="glyphicon-class small">Pune</span>
+                                                    <span class="glyphicon-class small" wicket:id="location"></span>
 
                                                 </div>
                                                 <!--                                                <a href="https://themes.getbootstrap.com" class="btn btn-outline">Browse themes</a>
@@ -99,17 +99,15 @@
                                 <span class="label label-success">Python</span>
                                 <span class="label label-info">Postgresql</span>
                                 <span class="label label-danger">OpenUI5</span>
-
-
                             </div>
 
-                            <div class="bs-callout bs-callout-info" id="callout-inputgroup-text-input-only"> <h4>Architecture</h4><p>Proficient in REST Architecture patterns and standards OpenAPI initiative.
+                            <div class="bs-callout bs-callout-info" id="callout-inputgroup-text-input-only"> <h4>Overview</h4><p wicket:id="overview">Proficient in REST Architecture patterns and standards OpenAPI initiative.
                                      Proficient in Enterprise Architecture and Integration Patterns in cloud (AWS).
                                      Proficient in Java, Nodejs and Python and new age Javascript</p></div>
 
 
                             <div class="bs-callout bs-callout-info" id="callout-inputgroup-text-input-only"> <h4>Programming</h4>
-                                <p>
+                                <p wicket:id="technologies">
                                     Proficient in Java, Nodejs and Python and new age Javascript.
                                      Significant experience with Java and Python, SQL in Oracle, MySQL, Postgresql.
                                      Writing Postgresql extension in C,C++ and Rust and Python, Nodejs
@@ -119,10 +117,7 @@
                                      Big Data - Hadoop
                                 </p></div>
 
-                            <div class="bs-callout bs-callout-info" id="callout-inputgroup-text-input-only"> <h4>UX</h4>
-                                <p>
-                                    Responsive UI frameworks such as OpenUI5 and React, AngularJs
-                                </p></div>
+                        
                         </div>
                     </div>
 

@@ -28,7 +28,7 @@ public class Profile implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String firstName, lastName;
+    private String firstName, lastName,fullName,email,location;
     @Lob
     private String overview;
     @Lob
@@ -44,7 +44,8 @@ public class Profile implements Serializable {
     @OneToMany(cascade = CascadeType.PERSIST)
     @OrderBy("id DESC")
     private List<Updates> updates;
-
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private List<Skill> skills;
     public Long getId() {
         return id;
     }
@@ -65,8 +66,34 @@ public class Profile implements Serializable {
         return lastName;
     }
 
+    public String getFullName() {
+        return firstName +" " + lastName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        String newEmail = email.replace("@"," at ").replace(".", " dot ");
+        return newEmail;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getOverview() {
@@ -128,6 +155,14 @@ public class Profile implements Serializable {
     public void add(Updates update) {
         if(this.updates == null) this.updates = new ArrayList<Updates>();
         this.updates.add(update);
+    }
+
+    public List<Skill> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<Skill> skills) {
+        this.skills = skills;
     }
 
   

@@ -18,14 +18,7 @@ import org.apache.wicket.model.CompoundPropertyModel;
 
 public class ProfilePage extends HomePage {
 
-    private String firstName, lastName;
-    private String overview;
-    private String technologies;
-    private String education;
-    private String employment;
-    private String experience;
-    private String personnelProjects;
-    private String updates;
+ 
 
     private String username = null;
     @Override
@@ -90,6 +83,8 @@ public class ProfilePage extends HomePage {
         
         TextField firstName = new TextField("firstName");
         TextField lastName = new TextField("lastName");
+        TextField email = new TextField("email");
+        TextField location = new TextField("location");
         TextArea overview = new TextArea("overview");
         TextArea technologies = new TextArea("technologies");
         TextArea education = new TextArea("education");
@@ -99,6 +94,8 @@ public class ProfilePage extends HomePage {
         
         form.add(firstName)
                 .add(lastName)
+                .add(email)
+                .add(location)
                 .add(overview)
                 .add(technologies)
                 .add(education)

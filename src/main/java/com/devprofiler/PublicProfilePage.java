@@ -1,5 +1,6 @@
 package com.devprofiler;
 
+import com.devprofiler.entities.Profile;
 import com.devprofiler.entity.controller.ProfileJpaController;
 import com.devprofiler.entities.Updates;
 import com.devprofiler.entity.controller.UpdatesJpaController;
@@ -31,12 +32,24 @@ public class PublicProfilePage extends WebPage {
 //        }else{
 //            add(new Label("profile",um.getProfile().toString()));
 //        }
+        addProfileDetails();
         addUpdateList();
+    }
+
+    private void addProfileDetails() {
+        final UserManagement um = getUserManagementJPAController().findUserManagementUserName(username.toString());
+
+        Profile p = um.getProfile();
+        add(new Label("fullName", p.getFullName()));
+        add(new Label("email", p.getEmail()));
+        add(new Label("location", p.getLocation()));
+        add(new Label("overview", p.getOverview()));
+        add(new Label("technologies", p.getTechnologies()));
+
     }
 
     private void addUpdateList() {
 
-        System.out.println(username);
         final UserManagement um = getUserManagementJPAController().findUserManagementUserName(username.toString());
 
         List<Updates> updates = um == null || um.getProfile() == null || um.getProfile().getUpdates() == null ? new ArrayList<Updates>() : um.getProfile().getUpdates();
@@ -68,4 +81,5 @@ public class PublicProfilePage extends WebPage {
         WicketApplication app = (WicketApplication) this.getApplication();
         return app.getUpdatesJPAController();
     }
+
 }

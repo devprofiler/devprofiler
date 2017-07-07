@@ -5,34 +5,55 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Insert title here</title>
         <style>
-            input{
-                clear: both;
-            }
+
         </style>
     </head>
     <body>
     <wicket:extend>
         <h2>Edit your profile</h2>
-   
+
         <form wicket:id="profileForm">
-            First Name:
-            <br>  <input type="text" wicket:id="firstName"/>
-            Last Name:
-            <br><input type="text" wicket:id="lastName"/>
-            Overview:
-            <br><textarea cols="60" rows="10" wicket:id="overview"></textarea>
-            Technologies:
-            <br><textarea  cols="60" rows="10" wicket:id="technologies"></textarea>
-            education
-            <br><textarea cols="60" rows="10"  wicket:id="education"></textarea>
-            Employment
-            <br><textarea  cols="60" rows="10" wicket:id="employment"></textarea>
-            Experience
-            <br><textarea cols="60" rows="10"  wicket:id="experience"></textarea>
-            Personnel Projects
-            <br><textarea cols="60" rows="10"  wicket:id="personnelProjects"></textarea>
-           
-            <br><input type="submit"/>
+            <label>First Name:</label>
+            <br>
+            <input type="text" wicket:id="firstName"/>
+            <br>
+            <label>Last Name:</label>
+            <br>
+            <input type="text" wicket:id="lastName"/>
+            <br>
+            <label>Email:</label>
+            <br>
+            <input type="text" wicket:id="email"/>
+            <br>
+            <label>Location:</label>
+            <br>
+            <input type="text" wicket:id="location"/>
+            <br>
+            <label>Overview:</label>
+            <br>
+            <textarea cols="60" rows="10" wicket:id="overview"></textarea>
+            <br>
+            <label>Technologies:</label>
+            <br>
+            <textarea  cols="60" rows="10" wicket:id="technologies"></textarea>
+            <br>
+            <label>education</label>
+            <br>
+            <textarea cols="60" rows="10"  wicket:id="education"></textarea>
+            <br>
+            <label>Employment</label>
+            <br>
+            <textarea  cols="60" rows="10" wicket:id="employment"></textarea>
+            <br>
+            <label>Experience</label>
+            <br>
+            <textarea cols="60" rows="10"  wicket:id="experience"></textarea>
+            <br>
+            <label>Personnel Projects</label>
+            <br>
+            <textarea cols="60" rows="10"  wicket:id="personnelProjects"></textarea>
+            <br>
+            <input type="submit"/>
         </form>
     </wicket:extend>
 </body>
