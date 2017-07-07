@@ -3,19 +3,15 @@ package com.devprofiler;
 
 
 
-import com.devprofiler.entities.ProfileJpaController;
-import com.devprofiler.entities.UpdatesJpaController;
-import com.devprofiler.entities.UserManagementJpaController;
+import com.devprofiler.entity.controller.ProfileJpaController;
+import com.devprofiler.entity.controller.UpdatesJpaController;
+import com.devprofiler.entity.controller.UserManagementJpaController;
+import com.devprofiler.utils.Configuration;
 import javax.persistence.Persistence;
 import org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSession;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebApplication;
 import org.apache.wicket.markup.html.WebPage;
 
-/**
- * Application object for your web application. If you want to run this application without deploying, run the Start class.
- * 
- * @see org.wicketTutorial.basicauth.Start#main(String[])
- */
 public class WicketApplication extends AuthenticatedWebApplication
 {    	
 	/**
@@ -48,13 +44,13 @@ public class WicketApplication extends AuthenticatedWebApplication
         
         
         public ProfileJpaController getProfileJPAController(){
-            return new ProfileJpaController(Persistence.createEntityManagerFactory("devprofiler_pu"));
+            return new ProfileJpaController(Persistence.createEntityManagerFactory(Configuration.getPU()));
         }
         
         public UserManagementJpaController getUserManagementJPAController(){
-            return new UserManagementJpaController(Persistence.createEntityManagerFactory("devprofiler_pu"));
+            return new UserManagementJpaController(Persistence.createEntityManagerFactory(Configuration.getPU()));
         }
         public UpdatesJpaController getUpdatesJPAController(){
-            return new UpdatesJpaController(Persistence.createEntityManagerFactory("devprofiler_pu"));
+            return new UpdatesJpaController(Persistence.createEntityManagerFactory(Configuration.getPU()));
         }
 }

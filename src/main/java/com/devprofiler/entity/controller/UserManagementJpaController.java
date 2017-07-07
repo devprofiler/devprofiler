@@ -1,6 +1,7 @@
 
-package com.devprofiler.entities;
+package com.devprofiler.entity.controller;
 
+import com.devprofiler.entities.UserManagement;
 import com.devprofiler.entities.UserManagement;
 import com.devprofiler.exceptions.NonexistentEntityException;
 import java.io.Serializable;

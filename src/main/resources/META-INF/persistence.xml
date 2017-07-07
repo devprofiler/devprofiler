@@ -20,4 +20,25 @@
             <property name="eclipselink.logging.parameters" value="false"/>
         </properties>
     </persistence-unit>
+    
+      <persistence-unit name="devprofiler_dev_pu" transaction-type="RESOURCE_LOCAL">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <class>com.devprofiler.Profile</class>
+        <class>com.devprofiler.entities.UserManagement</class>
+        <class>com.devprofiler.entities.Updates</class>
+        <class>com.devprofiler.entities.Profile</class>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <properties>
+            <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/devprofilerdb"/>
+            <property name="javax.persistence.jdbc.user" value="postgres"/>
+            <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
+            <property name="javax.persistence.jdbc.password" value="Linuxlove01"/>
+            <property name="javax.persistence.schema-generation.database.action" value="create-or-extend-tables"/>
+      
+            <property name="eclipselink.logging.level" value="FINE"/>
+            <property name="eclipselink.logging.parameters" value="false"/>
+            <property name="eclipselink.logging.level.sql" value="FINE"/>
+            <property name="eclipselink.logging.parameters" value="false"/>
+        </properties>
+    </persistence-unit>
 </persistence>

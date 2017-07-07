@@ -1,9 +1,9 @@
 package com.devprofiler;
 
 import com.devprofiler.entities.Profile;
-import com.devprofiler.entities.ProfileJpaController;
+import com.devprofiler.entity.controller.ProfileJpaController;
 import com.devprofiler.entities.UserManagement;
-import com.devprofiler.entities.UserManagementJpaController;
+import com.devprofiler.entity.controller.UserManagementJpaController;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.wicket.Session;

@@ -13,8 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.devprofiler.entities;
+package com.devprofiler.entity.controller;
 
+import com.devprofiler.entities.Updates;
 import com.devprofiler.entities.exceptions.NonexistentEntityException;
 import java.io.Serializable;
 import java.util.List;

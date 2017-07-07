@@ -1,9 +1,9 @@
 
 package com.devprofiler;
 
-import com.devprofiler.entities.ProfileJpaController;
+import com.devprofiler.entity.controller.ProfileJpaController;
 import com.devprofiler.entities.UserManagement;
-import com.devprofiler.entities.UserManagementJpaController;
+import com.devprofiler.entity.controller.UserManagementJpaController;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.request.mapper.parameter.PageParameters;

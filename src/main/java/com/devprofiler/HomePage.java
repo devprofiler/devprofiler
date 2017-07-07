@@ -1,7 +1,7 @@
 package com.devprofiler;
 
-import com.devprofiler.entities.ProfileJpaController;
-import com.devprofiler.entities.UserManagementJpaController;
+import com.devprofiler.entity.controller.ProfileJpaController;
+import com.devprofiler.entity.controller.UserManagementJpaController;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

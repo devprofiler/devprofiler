@@ -1,10 +1,10 @@
 package com.devprofiler;
 
-import com.devprofiler.entities.ProfileJpaController;
+import com.devprofiler.entity.controller.ProfileJpaController;
 import com.devprofiler.entities.Updates;
-import com.devprofiler.entities.UpdatesJpaController;
+import com.devprofiler.entity.controller.UpdatesJpaController;
 import com.devprofiler.entities.UserManagement;
-import com.devprofiler.entities.UserManagementJpaController;
+import com.devprofiler.entity.controller.UserManagementJpaController;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;

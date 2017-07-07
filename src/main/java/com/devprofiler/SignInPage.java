@@ -2,7 +2,7 @@ package com.devprofiler;
 
 import com.devprofiler.entities.Profile;
 import com.devprofiler.entities.UserManagement;
-import com.devprofiler.entities.UserManagementJpaController;
+import com.devprofiler.entity.controller.UserManagementJpaController;
 import org.apache.wicket.Session;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.markup.html.form.EmailTextField;

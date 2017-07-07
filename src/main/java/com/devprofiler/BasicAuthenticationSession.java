@@ -1,7 +1,7 @@
 package com.devprofiler;
 
 import com.devprofiler.entities.UserManagement;
-import com.devprofiler.entities.UserManagementJpaController;
+import com.devprofiler.entity.controller.UserManagementJpaController;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
 import org.apache.wicket.request.Request;

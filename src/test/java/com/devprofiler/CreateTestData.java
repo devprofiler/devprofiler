@@ -1,10 +1,9 @@
 package com.devprofiler;
 
 import com.devprofiler.entities.Profile;
-import com.devprofiler.entities.ProfileJpaController;
+import com.devprofiler.entity.controller.ProfileJpaController;
 import com.devprofiler.entities.UserManagement;
-import com.devprofiler.entities.UserManagementJpaController;
-import javax.persistence.EntityManager;
+import com.devprofiler.entity.controller.UserManagementJpaController;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import org.junit.After;
