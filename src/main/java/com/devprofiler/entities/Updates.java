@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Updates implements Serializable {
@@ -19,11 +20,12 @@ public class Updates implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIMESTAMP)    
     private Date createdOn = new Date();
     @Lob
     private String updateTitle, updateText;
     private int timesLiked, timesFavorited;
+    
 //    private List<Long> likedBy, favoritedBy;
 
     public Long getId() {
@@ -74,6 +76,7 @@ public class Updates implements Serializable {
         this.timesFavorited = timesFavorited;
     }
 
+  
   
     public String getTimeAgo() {
         if (createdOn == null) {

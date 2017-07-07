@@ -43,6 +43,7 @@ public class PublicProfilePage extends WebPage {
         add(new Label("fullName", p.getFullName()));
         add(new Label("email", p.getEmail()));
         add(new Label("location", p.getLocation()));
+        add(new Label("about", p.getAbout()));
         add(new Label("overview", p.getOverview()));
         add(new Label("technologies", p.getTechnologies()));
 

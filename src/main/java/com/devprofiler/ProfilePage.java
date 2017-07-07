@@ -85,6 +85,7 @@ public class ProfilePage extends HomePage {
         TextField lastName = new TextField("lastName");
         TextField email = new TextField("email");
         TextField location = new TextField("location");
+        TextArea about = new TextArea("about");
         TextArea overview = new TextArea("overview");
         TextArea technologies = new TextArea("technologies");
         TextArea education = new TextArea("education");
@@ -96,6 +97,7 @@ public class ProfilePage extends HomePage {
                 .add(lastName)
                 .add(email)
                 .add(location)
+                .add(about)
                 .add(overview)
                 .add(technologies)
                 .add(education)

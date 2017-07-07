@@ -28,6 +28,9 @@ public class Profile implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String firstName, lastName, fullName, email, location;
+    
+    
+    private String about;
     @Lob
     private String overview;
     @Lob
@@ -40,7 +43,7 @@ public class Profile implements Serializable {
     private String experience;
     @Lob
     private String personnelProjects;
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.PERSIST)    
     @OrderBy("id DESC")
     private List<Updates> updates;
     @OneToMany(cascade = CascadeType.PERSIST)
@@ -166,6 +169,14 @@ public class Profile implements Serializable {
 
     public void setSkills(List<Skill> skills) {
         this.skills = skills;
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
     }
 
     @Override
