@@ -13,4 +13,12 @@ public class Configuration {
  
     }
     
+     public static String getFileStoragePath(){
+        if(os.contains("linux")){
+                  return "~/devprofiler/filestorage/";
+        }
+          return "D://devprofiler//filestorage//";
+ 
+    }
+    
 }

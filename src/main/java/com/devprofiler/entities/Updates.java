@@ -1,9 +1,13 @@
 package com.devprofiler.entities;
 
+import com.devprofiler.utils.Configuration;
+import java.io.IOException;
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+
 
 @Entity
 public class Updates implements Serializable {
@@ -25,7 +31,11 @@ public class Updates implements Serializable {
     @Lob
     private String updateTitle, updateText;
     private int timesLiked, timesFavorited;
+   
+    private String mediaFileName,mediaType;
     
+    @Transient
+    private byte[] mediaFile;
 //    private List<Long> likedBy, favoritedBy;
 
     public Long getId() {
@@ -76,6 +86,23 @@ public class Updates implements Serializable {
         this.timesFavorited = timesFavorited;
     }
 
+    public String getMediaFileName() {
+        return mediaFileName;
+    }
+
+    public void setMediaFileName(String mediaFileName) {
+        this.mediaFileName = mediaFileName;
+    }
+
+    public String getMediaType() {
+        return mediaType;
+    }
+
+    public void setMediaType(String mediaType) {
+        this.mediaType = mediaType;
+    }
+
+   
   
   
     public String getTimeAgo() {
@@ -101,6 +128,16 @@ public class Updates implements Serializable {
 
         return difference / 1000 + "s";
     }
+
+    public byte[] getMediaFile() throws IOException {
+        Path filePath = Paths.get(Configuration.getFileStoragePath() + this.getMediaFileName());
+        return Files.readAllBytes(filePath);
+        
+    }
+
+    
+
+    
 
 
     @Override

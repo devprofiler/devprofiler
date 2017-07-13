@@ -6,13 +6,23 @@ import com.devprofiler.entities.Updates;
 import com.devprofiler.entity.controller.UpdatesJpaController;
 import com.devprofiler.entities.UserManagement;
 import com.devprofiler.entity.controller.UserManagementJpaController;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.image.Image;
+import org.apache.wicket.markup.html.image.resource.BufferedDynamicImageResource;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.apache.wicket.request.resource.DynamicImageResource;
+import org.apache.wicket.request.resource.IResource;
+import org.apache.wicket.request.resource.ResourceReference;
 import org.apache.wicket.util.string.StringValue;
 
 /**
@@ -36,6 +46,12 @@ public class PublicProfilePage extends WebPage {
         addUpdateList();
     }
 
+    @Override
+    protected void onInitialize() {
+        super.onInitialize();
+        setStatelessHint(true);
+    }
+
     private void addProfileDetails() {
         final UserManagement um = getUserManagementJPAController().findUserManagementUserName(username.toString());
 
@@ -49,6 +65,21 @@ public class PublicProfilePage extends WebPage {
 
     }
 
+    /**
+     * @return Gets shared image component
+     */
+    public DynamicImageResource getImageResource(final byte[] mediaFile) {
+
+        return new DynamicImageResource() {
+            @Override
+            protected byte[] getImageData(IResource.Attributes atrbts) {
+                return mediaFile;
+
+            }
+        };
+
+    }
+
     private void addUpdateList() {
 
         final UserManagement um = getUserManagementJPAController().findUserManagementUserName(username.toString());
@@ -57,12 +88,27 @@ public class PublicProfilePage extends WebPage {
         ListView updateLV = new ListView("updateList", updates) {
             @Override
             protected void populateItem(ListItem li) {
-                Updates up = (Updates) li.getModelObject();
-                li.add(new Label("updateTitle", up.getUpdateTitle()));
-                li.add(new Label("updateText", up.getUpdateText()));
-                li.add(new Label("timeAgo", up.getTimeAgo()));
-                li.add(new Label("timesLiked", up.getTimesLiked()));
-                li.add(new Label("timesFavorited", up.getTimesFavorited()));
+                try {
+                    Updates up = (Updates) li.getModelObject();
+                    li.add(new Label("updateTitle", up.getUpdateTitle()));
+                    li.add(new Label("updateText", up.getUpdateText()));
+                    if (up.getMediaFileName() == null || up.getMediaFileName().isEmpty()) {
+                        Image img = new Image("mediaFile", new Model());
+                        img.setVisible(false);
+                        li.add(img);
+
+                    } else if (up.getMediaFileName() != null && up.getMediaFile() != null) {
+                        System.out.println("*********************+++++++++++++++++++++++++++++++++++++++++++*****************");
+                        li.add(new Image("mediaFile", getImageResource(up.getMediaFile())));
+                    }
+//                       li.add(new Image("mediaFile",new Model("logo.png")));
+
+                    li.add(new Label("timeAgo", up.getTimeAgo()));
+                    li.add(new Label("timesLiked", up.getTimesLiked()));
+                    li.add(new Label("timesFavorited", up.getTimesFavorited()));
+                } catch (Exception ex) {
+                    Logger.getLogger(PublicProfilePage.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         };
         add(updateLV);

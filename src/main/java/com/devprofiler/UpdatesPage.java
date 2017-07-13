@@ -5,6 +5,9 @@ import com.devprofiler.entities.Updates;
 import com.devprofiler.entity.controller.UpdatesJpaController;
 import com.devprofiler.entities.UserManagement;
 import com.devprofiler.entity.controller.UserManagementJpaController;
+import com.devprofiler.utils.Configuration;
+import java.io.File;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -13,18 +16,23 @@ import org.apache.wicket.Session;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebApplication;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.form.StatelessForm;
+import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextArea;
+import org.apache.wicket.markup.html.form.upload.FileUpload;
+import org.apache.wicket.markup.html.form.upload.FileUploadField;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.util.lang.Bytes;
 
 public class UpdatesPage extends HomePage {
 
     private String username = null;
-    StatelessForm updateForm = null;
+    Form updateForm = null;
+    private FileUploadField fileUpload;
+    private String fileName;
 
     @Override
     protected void onConfigure() {
@@ -110,15 +118,59 @@ public class UpdatesPage extends HomePage {
 
         System.out.println(username);
         final UserManagement um = getUserManagementJPAController().findUserManagementUserName(username);
-        
-        updateForm = new StatelessForm("updateForm") {
+
+        // ======================================================================
+        Form mediaForm = new Form("mediaForm") {
+
+            @Override
+            protected void onSubmit() {
+                super.onSubmit();
+                final FileUpload uploadedFile = fileUpload.getFileUpload();
+                if (uploadedFile != null) {
+
+                    // write to a new file
+                    File newFile = new File(Configuration.getFileStoragePath()
+                            + uploadedFile.getClientFileName());
+                    if (!newFile.isDirectory()) {
+                        newFile.mkdirs();
+                    }
+
+                    if (newFile.exists()) {
+                        newFile.delete();
+                    }
+
+                    try {
+                        newFile.createNewFile();
+                        uploadedFile.writeTo(newFile);
+
+                        info("saved file: " + uploadedFile.getClientFileName());
+                        fileName = uploadedFile.getClientFileName();
+                    } catch (Exception e) {
+                        throw new IllegalStateException("Error");
+                    }
+                }
+
+            }
+
+        };
+        mediaForm.setMultiPart(true);
+        // max upload size, 512k
+        mediaForm.setMaxSize(Bytes.megabytes(5));
+        mediaForm.add(fileUpload = new FileUploadField("mediaFile"));
+        add(mediaForm);
+
+        // ========================================================================
+        updateForm = new Form("updateForm") {
             @Override
             protected void onSubmit() {
                 Updates up = (Updates) getModelObject();
+
                 try {
                     if (up.getId() != null && up.getId() > 0) {
+                        up.setMediaFileName(fileName);
                         getUpdatesJPAController().edit(up);
                     } else {
+                        up.setMediaFileName(fileName);
                         um.getProfile().add(up);
                         getProfileJPAController().edit(um.getProfile());
                         setResponsePage(UpdatesPage.class);
@@ -127,6 +179,7 @@ public class UpdatesPage extends HomePage {
                 } catch (Exception ex) {
                     Logger.getLogger(UpdatesPage.class.getName()).log(Level.SEVERE, null, ex);
                 }
+
             }
         };
 

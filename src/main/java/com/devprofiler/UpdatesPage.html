@@ -16,15 +16,21 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
+                      <form wicket:id="mediaForm">
+                        Media
+                        <br><input wicket:id="mediaFile" type="file"/>
+                        <br><input type="submit"/>
+                    </form>
                     <form wicket:id="updateForm">
                         Updates Title
                         <br><textarea  cols="60" rows="2" wicket:id="updateTitle"></textarea>
 
                         Updates
                         <br><textarea  cols="60" rows="10" wicket:id="updateText"></textarea>
+            
                         <br><input type="submit"/>
                     </form>
-
+                  
                 </div>
                 <div class="col-lg-6">
                     <ul>
